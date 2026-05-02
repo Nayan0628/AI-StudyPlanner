@@ -149,7 +149,7 @@ AI-study-planner/
 
 **Nayan N
 - 📧 nayan897059@gmail.com
-- 💼 [LinkedIn]((https://www.linkedin.com/in/nayan-n-459204279/))
+- 💼 [LinkedIn](https://www.linkedin.com/in/nayan-n-459204279/)
 - 🐙 [GitHub](https://github.com/Nayan0628)
 
 ---
