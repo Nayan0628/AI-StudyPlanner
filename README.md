@@ -147,10 +147,10 @@ AI-study-planner/
 
 ## 👨‍💻 Author
 
-**Nirikshan K**
-- 📧 nirikshan03@gmail.com
-- 💼 [LinkedIn](https://linkedin.com/in/nirikshan-k-933107282)
-- 🐙 [GitHub](https://github.com/Nirikshan03)
+**Nayan N
+- 📧 nayan897059@gmail.com
+- 💼 [LinkedIn]((https://www.linkedin.com/in/nayan-n-459204279/))
+- 🐙 [GitHub](https://github.com/Nayan0628)
 
 ---
 
