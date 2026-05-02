@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo '>>> Pulling code from GitHub...'
+                checkout scm
+            }
+        }
+
+        stage('Build Backend') {
+            steps {
+                dir("${WORKSPACE}/AI-study-planner/backend") {
+                    sh 'chmod +x mvnw'
+                    sh './mvnw clean package -DskipTests'
+                }
+            }
+        }
+
+        stage('Install Docker Compose') {
+            steps {
+                sh 'curl -L "https://github.com/docker/compose/releases/download/v2.24.0/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose'
+                sh 'chmod +x /usr/local/bin/docker-compose'
+                sh 'docker-compose --version'
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                dir("${WORKSPACE}/AI-study-planner") {
+                    sh 'docker-compose build backend frontend'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                dir("${WORKSPACE}/AI-study-planner") {
+                    sh 'docker rm -f studyplanner-backend studyplanner-frontend studyplanner-postgres || true'
+                    sh 'docker-compose up -d postgres'
+                    sh 'sleep 10'
+                    sh 'docker-compose up -d backend'
+                    sh 'sleep 5'
+                    sh 'docker-compose up -d frontend'
+        }
+    }
+}
+    }
+    post {
+        success {
+            echo '✅ SUCCESS — App live at http://localhost:3000'
+        }
+        failure {
+            echo '❌ FAILED — Check console output'
+        }
+    }
+}
